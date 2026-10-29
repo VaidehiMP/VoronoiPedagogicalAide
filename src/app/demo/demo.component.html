@@ -1,0 +1,19 @@
+<div>
+    <div #chartContainer>
+        <canvas #chart baseChart 
+        [data]="scatterData" 
+        [options]="chartOptions" 
+        width="750" 
+        height="450">
+        </canvas>
+    </div>
+    <button (click)="makeVoronoiDiagram()">Make</button>
+    <ul>
+        Tree Locations
+        <li *ngFor="let tree of $any(scatterData.datasets[0].data); let i = index">
+            x: {{ tree.x }}, y: {{ tree.y }}
+        </li>
+    </ul>
+    <input *ngIf="diagramMade" #coord type="text" id="coord" name="coord" placeholder="Format: x,y" required>
+    <button *ngIf="diagramMade" (click)="removeTree()">Remove</button>
+</div>
